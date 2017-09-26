@@ -7,7 +7,8 @@ VAGRANTFILE_API_VERSION = "2"
 LOCAL_BRANCH = ENV.fetch("LOCAL_BRANCH", "feature-clustering")
 
 USER = ENV.fetch("USER")
-folders = {'xs/rpms' => '/rpms',
+folders = {
+#'xs/rpms' => '/rpms',
 #           'xs/opt' => '/opt',
 #           'xs/sbin' => '/sbin',
 #           'xs/bin' => '/bin',
@@ -89,7 +90,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       host.vm.box = "jonludlam/#{LOCAL_BRANCH}"
       host.vm.network "public_network", bridge: "xenbr0"
       folders.each { |k,v| host.vm.synced_folder k, v, type: "rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"] }
-      host.vm.synced_folder "scripts", "/scripts", type:"rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
+      #host.vm.synced_folder "scripts", "/scripts", type:"rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
+      host.vm.synced_folder "xs/sbin", "/usr/sbin", type:"rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
       config.vm.provider "xenserver" do |xs|
         xs.name = "#{USER}/#{hostname}/#{host.vm.box}"
       end
