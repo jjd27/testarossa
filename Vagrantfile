@@ -114,6 +114,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     xs.xs_host = "perfuk-01-10.xenrt.citrite.net"
     xs.xs_username = "root"
     xs.xs_password = "xenroot"
+    xs.template = "OpaqueRef:f8378e9c-2caf-c674-baa7-a2a7d48c7afe" # pv-dom0
   end
 end
 
