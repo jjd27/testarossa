@@ -92,6 +92,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       folders.each { |k,v| host.vm.synced_folder k, v, type: "rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"] }
       #host.vm.synced_folder "scripts", "/scripts", type:"rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
       host.vm.synced_folder "xs/sbin", "/usr/sbin", type:"rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
+      host.vm.synced_folder "xs/bin", "/bin", type:"rsync", rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
       config.vm.provider "xenserver" do |xs|
         xs.name = "#{USER}/#{hostname}/#{host.vm.box}"
       end
