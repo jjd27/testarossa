@@ -1,5 +1,8 @@
 ---
 # Note: if upgrading a live system would need to stop the cluster or at least disable fencing first
+- name: install inotifywait
+  shell: |
+    rpm -ivh --force ftp://195.220.108.108/linux/epel/7/x86_64/Packages/i/inotify-tools-3.14-8.el7.x86_64.rpm
 - name: Run xapi-clusterd
   systemd: state=started enabled=yes name=xapi-clusterd
 
